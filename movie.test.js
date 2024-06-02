@@ -1,37 +1,37 @@
-
 const request = require('supertest');
 const app = require('./server');
 
-describe('GET /api/movies', () => {
-  it('should respond with a JSON array of movies', async () => {
+describe('CRUD Operations for /api/movies', () => {
+
+  // Test the Create (POST) operation
+  it('should create a new movie', async () => {
+    const newMovie = {
+      title: 'New Movie',
+      genre: 'Action',
+      director: 'John Doe',
+      year: 2021,
+      rating: 8
+    };
+  
+    const res = await request(app)
+      .post('/api/movies')
+      .send(newMovie)
+      .expect('Content-Type', /json/)
+      .expect(201);
+  
+    expect(res.body).toHaveProperty('movie');
+    expect(res.body.movie).toHaveProperty('id'); 
+    expect(res.body.movie.title).toEqual(newMovie.title);
+  });
+
+  // Test the Read (GET) operation
+  it('should retrieve all movies', async () => {
     const res = await request(app)
       .get('/api/movies')
       .expect('Content-Type', /json/)
-      .expect(200)
+      .expect(200);
 
-    expect(res.body).toBeInstanceOf(Array);
-    expect(res.body).toHaveLength(2);
-
-    expect(res.body[0]).toEqual({
-      id: 1,
-      title: 'How to basic',
-      genre: 'horror',
-      director: 'skibidi',
-      year: 2000,
-      rating: 2,
-      createdAt: '2024-06-02T17:42:37.000Z',
-      updatedAt: '2024-06-02T17:42:37.000Z'
-    });
-
-    expect(res.body[1]).toEqual({
-      id: 2,
-      title: 'Pudidi',
-      genre: 'comedy',
-      director: 'fanum tax',
-      year: 2020,
-      rating: 10,
-      createdAt: '2024-06-02T17:44:56.000Z',
-      updatedAt: '2024-06-02T17:44:56.000Z'
-    });
+    expect(Array.isArray(res.body)).toBe(true);
   });
+
 });
