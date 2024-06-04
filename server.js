@@ -15,6 +15,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api/movies', movieRoute);
 app.get('/', (req, res) => {
-    res.send('Hello World!');
+    res.send('Hello Continous Deployment!!');
 });
 app.listen(port, () => console.log(`App listening on port http://localhost:${port}!`) )
