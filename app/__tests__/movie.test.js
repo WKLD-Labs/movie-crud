@@ -1,8 +1,13 @@
 const request = require('supertest');
 const app = require('../../server');
+const db = require('../../app/models/index');
 
 describe('CRUD Operations for /api/movies', () => {
     let createdMovieId;
+
+    afterAll(async () => {
+        await db.sequelize.close();
+    });
 
     // Test the Create (POST) operation
     it('should create a new movie', async () => {
