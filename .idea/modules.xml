@@ -5,4 +5,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/tubes-mkpl.iml" filepath="$PROJECT_DIR$/.idea/tubes-mkpl.iml" />
     </modules>
   </component>
+  <logging>
+    <junit outputFile="tests/_reports/test-report.xml"/>
+    <coverage-html outputDirectory="tests/_reports/coverage-report"/>
+    <coverage-clover outputFile="tests/_reports/coverage-report.xml"/>
+  </logging>
 </project>
