@@ -27,7 +27,7 @@ exports.findOne = async (req, res) => {
         if (movie) {
             res.status(200).json({ movie });
         } else {
-            res.status(404).json({ message: 'Movie not found' });
+            res.status(404).json({ message: '' });
         }
     } catch (error) {
         res.status(500).json({ error: error.message });
