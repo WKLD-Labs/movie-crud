@@ -11,14 +11,14 @@ exports.create = async (req, res) => {
     }
 }
 
-exports.findAll = async (req, res) => {
+/*exports.findAll = async (req, res) => {
     try {
         const movies = await Movie.findAll();
         res.status(200).json(movies);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
-}
+}*/
 
 exports.findOne = async (req, res) => {
     const { id } = req.params;
