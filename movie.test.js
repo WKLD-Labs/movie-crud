@@ -4,23 +4,6 @@ const app = require('./server');
 describe('CRUD Operations for /api/movies', () => {
   let createdMovieId;
 
-  // Test the Delete (DELETE) operation
-  it('should delete a movie', async () => {
-    const res = await request(app)
-      .delete(`/api/movies/${createdMovieId}`)
-      .expect('Content-Type', /json/);
-
-    // Check if the movie was deleted successfully
-    if (res.status === 200) {
-      expect(res.body).toHaveProperty('message', 'Movie deleted successfully');
-    } else if (res.status === 404) {
-      expect(res.body).toHaveProperty('message', 'Movie not found');
-    } else {
-      // Handle other error cases if needed
-      fail(`Unexpected response status: ${res.status}`);
-    }
-  });
-
   // Test the Create (POST) operation
   it('should create a new movie', async () => {
     const newMovie = {
@@ -62,6 +45,20 @@ describe('CRUD Operations for /api/movies', () => {
 
     expect(res.body).toHaveProperty('movie');
     expect(res.body.movie.id).toEqual(createdMovieId);
+  });
+
+  // Test the Delete (DELETE) operation
+  it('should delete a movie', async () => {
+    const res = await request(app)
+      .delete(`/api/movies/${createdMovieId}`)
+      .expect('Content-Type', /json/);
+
+    // Check if the movie was deleted successfully
+    if (res.status === 200) {
+      expect(res.body).toHaveProperty('message', 'Movie deleted successfully');
+    } else if (res.status === 404) {
+      expect(res.body).toHaveProperty('message', 'Movie not found');
+    } 
   });
 
 });
