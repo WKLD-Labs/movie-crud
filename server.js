@@ -2,7 +2,8 @@ const express = require('express');
 const cors = require('cors');
 const config = require('dotenv');
 const app = express();
-const port = 5500;
+const port = 5502;
+module.exports = app;
 const movieRoute = require('./app/routes/movie.route');
 
 const db = require('./app/models');
